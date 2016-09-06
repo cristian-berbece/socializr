@@ -1,0 +1,59 @@
+﻿@using BusinessEntities.Enums
+
+@model Socializr.Models.Friends.FriendStateModel
+
+@{ Layout = null; }
+
+<div class="div-friend-options">
+    @switch (Model.Status)
+    {
+        case RelationshipStatus.Friends:
+            {
+                <button value="Send friend request" class="btn btn-default btn-success btn-sm btn-friend cancel-friend-relation">
+                    Cancel friendship
+                </button>
+                break;
+            }
+
+        case RelationshipStatus.NoPossibleRelation:
+            {
+                break;
+            }
+
+        case RelationshipStatus.NoRelationship:
+            {
+                <button value="Send friend request" class="btn btn-default btn-success btn-sm btn-friend send-friend-request">
+                    Send friend request
+                </button>
+                break;
+            }
+
+        case RelationshipStatus.RequestSentByFirstUser:
+            {
+                //posting is disabled via javascript
+                <button value="Send friend request" class="btn btn-warning btn-sm btn-friend cancel-friend-request">
+                    Cancel friend request
+                </button>
+                break;
+            }
+
+        case RelationshipStatus.RequestReceivedByFirstUser:
+            {
+                <button value="Send friend request" class="btn btn-warning btn-sm btn-friend accept-friend-request">
+                    Accept friend request
+                </button>
+
+                //posting is disabled via javascript
+                <button value="Send friend request" class="btn btn-warning btn-sm btn-friend reject-friend-request">
+                    Reject friend request
+                </button>
+
+                break;
+            }
+    }
+</div>
+
+
+
+
+

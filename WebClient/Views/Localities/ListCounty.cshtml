@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Socializr.Models.Localities.ListCountyModel>
+
+@{
+    ViewBag.Title = "EditCounties";
+}
+
+<h2>EditCounties</h2>
+
+@Html.ActionLink("Create a new county", "CreateCounty", null, new { @class = "btn btn-default" })
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CountyName)
+        </th>
+        
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountyName)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit County", "EditCounty", new { id = item.CountyId })
+            </td>
+        </tr>
+    }
+</table>
+
+
+@if (ViewBag.PageNumber > 1)
+{
+    @Html.ActionLink("Previous", "ListCounty", new { pageNumber = ViewBag.PageNumber - 1 })
+}
+
+@Html.ActionLink("Next", "ListCounty", new { pageNumber = ViewBag.PageNumber + 1 })
+
+
+
+

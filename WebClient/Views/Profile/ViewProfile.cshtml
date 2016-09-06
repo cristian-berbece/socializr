@@ -1,0 +1,90 @@
+﻿@model Socializr.Models.Profile.ViewFullProfileModel
+
+@{
+    ViewBag.Title = "ViewProfile";
+}
+
+<h2>@Model.FName @Model.LName</h2>
+
+<div class="container-friend-options" data-user-id="@Model.IdUser">
+    @Html.Action("Options", "Friends", new { userId = Model.IdUser })
+</div>
+
+<div>
+    @Html.ActionLink("See this user's posts", "UserPosts", "Feed", new { id = Model.IdUser }, null)
+</div>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsMale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsMale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CountyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountyName)
+        </dd>
+
+        <dd>
+            @foreach (var i in Model.Interests)
+            {
+                <p>@i</p>
+            }
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+</p>
+
+
+@section scripts {
+    <script type="text/javascript">
+        var globalInfo = {
+            ajaxUrl: {
+                sendFriendRequest: "@Url.Action("SendFriendRequest","Friends")",
+                loadFriendOptions: "@Url.Action("Options","Friends")",
+                cancelFriendRequest: "@Url.Action("CancelFriendRequest", "Friends")",
+                rejectFriendRequest: "@Url.Action("RejectFriendRequest", "Friends")",
+                acceptFriendRequest: "@Url.Action("AcceptFriendRequest","Friends")",
+                cancelFriendRelation: "@Url.Action("CancelFriendRelation","Friends")"
+            },
+        };
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app/Friends/FriendOptions.js")"></script>
+}

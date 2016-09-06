@@ -1,0 +1,37 @@
+﻿@model  Socializr.Code.Pagination.Pager<BusinessEntities.CustomTypes.PostDisplay.DisplayPostModel>
+@using Socializr.Code.Helpers
+
+@{
+    ViewBag.Title = "UserPosts";
+}
+
+<h2>@Model.ElementList.First().AuthorFullName's posts</h2>
+
+<div class="post-list">
+    @foreach (var item in Model.ElementList)
+    {
+        @Html.Partial("Display", item)
+    }
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        var globalInfo = {
+            ajaxUrl: {
+                addComment: "@Url.Action("AddComment","Comment")",
+                displayCommentList: "@Url.Action("DisplayCommentList", "Comment")",
+                getLatestComment: "@Url.Action("GetLatestComment","Comment")",
+                getComments: "@Url.Action("GetComments", "Comment")",
+            },
+        };
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app/Feed/Post.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app/Feed/LikeablePost.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app/Feed/CommentablePost.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app/Feed/likeSystem.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app/Feed/commentSystem.js")"></script>
+}
+
+
+@Html.Partial("FeedHandlebars");
+@Html.PageOptions(Model, "UserPosts")

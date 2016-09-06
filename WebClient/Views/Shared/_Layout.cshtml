@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css/css")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("SocializR", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                <div class="navbar-text nav navbar-nav">
+                    <select class="" id="search-bar">
+                        <option>Search your friends .......</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav"></ul>
+
+
+                @*<form class="navbar-form navbar-left" >
+                        <select class="" id="search-bar">
+                            <option>Search your friends .......</option>
+                        </select>
+                    </form>*@
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session.CurrentUser == null)
+                    {
+                        <li> @Html.ActionLink("Login", "Login", "Account")</li>
+                        <li> @Html.ActionLink("Register", "Register", "Account")</li>
+                    }
+                    else
+                    {
+                        <li><p class="navbar-text">Welcome, @Session.CurrentUser.FName</p></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                <span class="caret">
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu" id="friend-request-menu" role="menu">
+                                <li role="separator" class="divider"></li>
+                                <li><a href="@Url.Action("ViewProfile","Profile",new { id = Session.CurrentUser.IdUser})">See all your friend requests</a></li>
+                            </ul>
+                        </li>
+                        <li> @Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <footer></footer>
+    </div>
+    <script id="friend-request-template" type="text/x-handlebars-template">
+        <li>
+            <a href="@Url.Action("ViewProfile","Profile")/{{requesterId}}">
+                {{requesterFullName}}
+            </a>
+        </li>
+    </script>
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

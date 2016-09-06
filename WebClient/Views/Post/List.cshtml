@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BusinessEntities.CustomTypes.PostDisplay.DisplayPostListModel>
+@{ Layout = null; }
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr data-post-id="@item.IdPost" class="display-post-options">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Post", new { id = item.IdPost })" class = "btn btn-sm btn-default" >Edit</a>
+                @using (Html.BeginForm("DeletePost", "Post", FormMethod.Post, new { @class = "form-delete-post" }))
+                {
+                    <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+@if (ViewBag.PageNumber > 2)
+{
+
+    @Html.ActionLink("Back to first page", "ManagePosts", new { pageNumber = 1 })
+}
+
+@if (ViewBag.PageNumber > 1)
+{
+
+    @Html.ActionLink("Previous Page", "ManagePosts", new { pageNumber = ViewBag.PageNumber - 1 })
+}
+
+ @Html.ActionLink("Next Page", "ManagePosts", new { pageNumber = ViewBag.PageNumber + 1 })
+
+

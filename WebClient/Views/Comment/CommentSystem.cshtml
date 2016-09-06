@@ -1,0 +1,12 @@
+﻿@model BusinessEntities.CustomTypes.PostDisplay.DisplayPostModel
+@{ Layout = null; }
+
+<div>
+    @Html.Action("CreateComment", "Comment", new { postId = Model.IdPost })
+    <input type="hidden" value=1 class="page-number">
+    <button class="load-comments">Load more comments</button>
+    <button class="hide-comments" >Hide comments</button>
+    <div class="comments-display">
+        @Html.Action("DisplayCommentList", "Comment", new { postId = Model.IdPost, pageNumber = 1, resultsPerPage = Config.CommentsPerLoad })
+    </div>
+</div>

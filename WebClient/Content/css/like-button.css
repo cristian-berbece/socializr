@@ -1,0 +1,23 @@
+﻿
+.btn-dislike {
+    background-color: #e99002;
+    border-color: #d08002;
+}
+
+.btn-like {
+    color: #ffffff;
+    background-color: #008cba;
+    border-color: #0079a1;
+}
+
+    .btn-like:active {
+        color: #ffffff;
+        background-color: #008cba;
+        border-color: #0079a1;
+    }
+
+    .btn-like:hover {
+        color: #ffffff;
+        background-color: #008cba;
+        border-color: #0079a1;
+    }

@@ -1,0 +1,40 @@
+﻿@using BusinessEntities.Enums
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>SocializR</h1>
+    <p class="lead">Watch out, Zuckerberg!</p>
+    <p><a href="@Url.Action("Feed","Feed")" class="btn btn-primary btn-lg">See what's new! &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Tell us who you are</h2>
+        <p> Complete your profile, edit your contact information and lookups. It's easier than ever to find friends with the same interests!</p>
+        <p>@Html.ActionLink("Edit Profile", "Edit", "Profile", null, new { @class = "btn btn-primary" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Write your stories</h2>
+        <p>Create a new article, edit your entries or just take a look at what you've created</p>
+        <p>@Html.ActionLink("Create and edit posts", "Index", "Post", null, new { @class = "btn btn-primary" })</p>
+        <p>@Html.ActionLink("View your posts", "UserPosts", "Feed", new { id = Session.CurrentUser.IdUser }, new { @class = "btn btn-primary" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Complete exeperience</h2>
+        <p>You can easily complete yout profile thanks to our generous interest and localities database</p>
+
+        @if (Session.CurrentUser.Permissions.Contains(Permissions.ManageLocalities))
+        {
+            <p>@Html.ActionLink("Manage Localities", "Index", "Localities", null, new { @class = "btn btn-primary" })</p>
+        }
+
+        @if (Session.CurrentUser.Permissions.Contains(Permissions.ManageLookups))
+        {
+            <p>@Html.ActionLink("Manage Interests", "Index", "Interest", null, new { @class = "btn btn-primary" })</p>
+        }
+
+    </div>
+</div>

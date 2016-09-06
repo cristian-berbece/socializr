@@ -1,0 +1,14 @@
+﻿
+@model Socializr.Models.Interest.ViewInterestModel
+
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Description)
+    </td>
+    <td>
+        @Html.ActionLink("Edit / Delete", "Edit", new { id = Model.InterestId })
+    </td>
+</tr>

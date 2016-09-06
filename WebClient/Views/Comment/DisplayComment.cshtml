@@ -1,0 +1,11 @@
+﻿@model BusinessEntities.CustomTypes.CommentDisplay.DisplayCommentModel
+@{ Layout = null; }
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-6">
+           @Html.ActionLink(Model.AuthorFullName, "ViewProfile", "Profile", new { id = Model.IdUser }, null) 
+            <span>@Html.DisplayFor(model => model.Body)</span>
+            <p>@Html.DisplayFor(model => model.CreatedOn)</p>
+        </div>
+    </div>
+</div>

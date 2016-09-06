@@ -1,0 +1,40 @@
+﻿@using Socializr.Code.Pagination
+@using Socializr.Models.Interest
+@using Socializr.Code.Helpers
+@model  Pager<ViewInterestModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ElementList.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ElementList.First().Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ElementList)
+    {
+        @Html.Partial("Display", item)
+    }
+</table>
+
+@Html.PageOptions(Model, "List")
+
+@*@if (ViewBag.PageNumber > 1)
+    {
+        @Html.ActionLink("Previous", "List", new { pageNumber = ViewBag.PageNumber - 1 })
+    }
+
+    @Html.ActionLink("Next", "List", new { pageNumber = ViewBag.PageNumber + 1 })*@

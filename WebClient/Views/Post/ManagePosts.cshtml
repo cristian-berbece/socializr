@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "ManagePosts";
+}
+
+<h2>ManagePosts</h2>
+<p>@Html.ActionLink("My Posts", "UserPosts", "Feed", new { id = Session.CurrentUser.IdUser }, new { @class = "btn btn-primary" })</p>
+@Html.Action("Create", "Post", null)
+@Html.Action("List", "Post", null)
+
+@section scripts {
+    <script type="text/javascript">
+        var globalInfo = {
+            ajaxUrl :{
+                deletePost : "@Url.Action("DeletePost","Post")",
+            },
+        };
+    </script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/app/PostManagement/DeletePost.js")"></script>
+}

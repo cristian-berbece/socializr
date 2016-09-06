@@ -1,0 +1,64 @@
+﻿@{ Layout = null; }
+<script id="display-comment-template" type="text/x-handlebars-template">
+    <div class="container comment-display">
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="@Url.Action("ViewProfile","Profile",null)/{{idAuthor}}">{{authorName}}</a>
+                <span>{{body}}</span>
+                <p>{{date}}</p>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="display-post-template" type="text/x-handlebars-template">
+    <div class="container display-post well" data-idPost="{{idPost}}">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <h4>{{title}}</h4>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <h5><a href="@Url.Action("ViewProfile","Profile")/{{idAuthor}}">{{authorName}}</a></h5>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <p>{{body}}</p>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <p>{{date}}</p>
+            </div>
+
+            <div class="col-sm-2 col-sm-offset-3 like-button-container" data-isliked="{{isLiked}}">
+                <span class="like-count" data-count="{{likeCount}}">{{likeCount}} Likes</span>
+            </div>
+            <div class="col-sm-3">
+                <form class="form-add-comment">
+                    <div class="input-group">
+                        <span class="input-group-btn ">
+                            <input type="submit" value="Add" class="btn" />
+                        </span>
+                        <input type="text" class="form-control input-add-comment" placeholder="Add a comment...">
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3">
+                <div>
+                    <button class="btn btn-load-comments">More comments</button>
+                    <button class="btn btn-hide-comments">Hide comments</button>
+                    <div class="comments-display" data-pageNumber="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="like-button-template" type="text/x-handlebars-template">
+    <button class="btn btn-sm btn-set-like btn-like"><span class='glyphicon glyphicon-thumbs-up'></span> Like</button>
+</script>
+
+<script id="dislike-button-template" type="text/x-handlebars-template">
+    <button class="btn btn-sm btn-set-like btn-dislike"><span class='glyphicon glyphicon-thumbs-down'></span> Dislike</button>
+</script>

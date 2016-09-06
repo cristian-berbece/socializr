@@ -1,0 +1,9 @@
+﻿
+@{ Layout = null; }
+
+@model IEnumerable<BusinessEntities.CustomTypes.CommentDisplay.DisplayCommentModel>
+
+@foreach (var item in Model)
+{
+    @Html.Partial("DisplayComment", item);
+}
